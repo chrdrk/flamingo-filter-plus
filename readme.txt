@@ -1,5 +1,5 @@
 === Flamingo Filter Plus ===
-Contributors: robertopussini
+Contributors: chrdrk
 Tags: flamingo, contact form 7, email filter, tld filter, domain filter
 Requires at least: 6.7
 Tested up to: 6.7
@@ -63,10 +63,6 @@ Yes. TLD and domain counts are cached as WordPress transients for 1 hour. The ca
 = Can I use both filters at the same time? =
 
 Yes. When both TLD and domain are selected, they work as an AND filter. Selecting a TLD also dynamically narrows the domain dropdown to only show matching domains.
-
-== Screenshots ==
-
-1. TLD and domain filter dropdowns on the Inbound Messages page.
 
 == Changelog ==
 
