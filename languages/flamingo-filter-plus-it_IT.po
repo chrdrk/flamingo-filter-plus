@@ -1,0 +1,40 @@
+# Italian translation for Flamingo Filter Plus.
+# Copyright (C) 2025 Chrdrk
+# This file is distributed under the same license as the Flamingo Filter Plus plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Flamingo Filter Plus 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/chrdrk/flamingo-filter-plus/issues\n"
+"POT-Creation-Date: 2025-01-01 00:00+0000\n"
+"PO-Revision-Date: 2025-01-01 00:00+0000\n"
+"Last-Translator: Chrdrk\n"
+"Language-Team: Italian\n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: flamingo-filter-plus.php
+msgid "Flamingo Filter Plus requires the Flamingo plugin. It has been deactivated."
+msgstr "Flamingo Filter Plus richiede il plugin Flamingo. È stato disattivato."
+
+#: flamingo-filter-plus.php
+msgid "Filter"
+msgstr "Filtra"
+
+#: flamingo-filter-plus.php
+msgid "All TLDs"
+msgstr "Tutti i TLD"
+
+#: flamingo-filter-plus.php
+msgid "All domains"
+msgstr "Tutti i domini"
+
+#. Plugin Name of the plugin
+msgid "Flamingo Filter Plus"
+msgstr "Flamingo Filter Plus"
+
+#. Description of the plugin
+msgid "Adds TLD and email domain filter dropdowns to Flamingo's Inbound Messages and Address Book admin pages, to facilitate bulk operations."
+msgstr "Aggiunge filtri a tendina per TLD e dominio email nelle pagine Messaggi in arrivo e Rubrica di Flamingo, per facilitare le operazioni in blocco."
