@@ -385,6 +385,18 @@ function fmc_filter_inbound_by_domain( $query ) {
 		return;
 	}
 
+	// Determine post_status for count lookup.
+	$status_map  = array(
+		'spam'  => 'flamingo-spam',
+		'trash' => 'trash',
+	);
+	$post_status = 'publish';
+
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( ! empty( $_REQUEST['post_status'] ) && isset( $status_map[ $_REQUEST['post_status'] ] ) ) {
+		$post_status = $status_map[ $_REQUEST['post_status'] ];
+	}
+
 	global $wpdb;
 
 	$meta_query = $query->get( 'meta_query' );
@@ -400,11 +412,15 @@ function fmc_filter_inbound_by_domain( $query ) {
 		$tld = sanitize_text_field( $_REQUEST['fmc_tld'] );
 
 		if ( preg_match( '/^[a-z0-9.-]+$/i', $tld ) ) {
-			$meta_query[] = array(
-				'key'     => '_from_email',
-				'value'   => '%.' . $wpdb->esc_like( $tld ),
-				'compare' => 'LIKE',
-			);
+			$tld_counts = fmc_get_tld_counts( 'flamingo_inbound', '_from_email', $post_status );
+
+			if ( isset( $tld_counts[ strtolower( $tld ) ] ) ) {
+				$meta_query[] = array(
+					'key'     => '_from_email',
+					'value'   => '.' . $wpdb->esc_like( $tld ),
+					'compare' => 'LIKE',
+				);
+			}
 		}
 	}
 
@@ -413,11 +429,15 @@ function fmc_filter_inbound_by_domain( $query ) {
 		$domain = sanitize_text_field( $_REQUEST['fmc_domain'] );
 
 		if ( preg_match( '/^[a-z0-9.-]+$/i', $domain ) ) {
-			$meta_query[] = array(
-				'key'     => '_from_email',
-				'value'   => '%@' . $wpdb->esc_like( $domain ),
-				'compare' => 'LIKE',
-			);
+			$domain_counts = fmc_get_domain_counts( 'flamingo_inbound', '_from_email', $post_status );
+
+			if ( isset( $domain_counts[ strtolower( $domain ) ] ) ) {
+				$meta_query[] = array(
+					'key'     => '_from_email',
+					'value'   => '@' . $wpdb->esc_like( $domain ),
+					'compare' => 'LIKE',
+				);
+			}
 		}
 	}
 
@@ -470,11 +490,15 @@ function fmc_filter_contacts_by_domain( $query ) {
 		$tld = sanitize_text_field( $_REQUEST['fmc_tld'] );
 
 		if ( preg_match( '/^[a-z0-9.-]+$/i', $tld ) ) {
-			$meta_query[] = array(
-				'key'     => '_email',
-				'value'   => '%.' . $wpdb->esc_like( $tld ),
-				'compare' => 'LIKE',
-			);
+			$tld_counts = fmc_get_tld_counts( 'flamingo_contact', '_email' );
+
+			if ( isset( $tld_counts[ strtolower( $tld ) ] ) ) {
+				$meta_query[] = array(
+					'key'     => '_email',
+					'value'   => '.' . $wpdb->esc_like( $tld ),
+					'compare' => 'LIKE',
+				);
+			}
 		}
 	}
 
@@ -483,11 +507,15 @@ function fmc_filter_contacts_by_domain( $query ) {
 		$domain = sanitize_text_field( $_REQUEST['fmc_domain'] );
 
 		if ( preg_match( '/^[a-z0-9.-]+$/i', $domain ) ) {
-			$meta_query[] = array(
-				'key'     => '_email',
-				'value'   => '%@' . $wpdb->esc_like( $domain ),
-				'compare' => 'LIKE',
-			);
+			$domain_counts = fmc_get_domain_counts( 'flamingo_contact', '_email' );
+
+			if ( isset( $domain_counts[ strtolower( $domain ) ] ) ) {
+				$meta_query[] = array(
+					'key'     => '_email',
+					'value'   => '@' . $wpdb->esc_like( $domain ),
+					'compare' => 'LIKE',
+				);
+			}
 		}
 	}
 
