@@ -1,0 +1,16 @@
+# Claude Code
+.claude/
+
+# Flamingo source (dependency, not part of this plugin)
+flamingo/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
